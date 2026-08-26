@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" manifest="cache.appcache">
+<html lang="ar" dir="rtl" manifest="cache.appcache">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,28 +8,29 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: #0b0d10 url("background.jpg") center center / cover no-repeat fixed;
-    color: #c8ced8;
-    font: 15px/1.45 "Segoe UI", system-ui, sans-serif;
+    background: #06152b url("background.jpg") center center / cover no-repeat fixed;
+    color: #eef4ff;
+    font: 18px/1.7 "Tahoma", "Segoe UI", Arial, sans-serif;
 }
-  #wrap { padding:16px 18px; }
-  #state { font-size:22px; font-weight:700; margin:0 0 10px; }
-  #out { white-space:pre-wrap; font:12px/1.45 Consolas, monospace;
-         background:#11151b; border:1px solid #1e2732; border-radius:5px;
+  #wrap { padding:24px 24px; }
+  #state { font-size:30px; font-weight:800; margin:0 0 12px; }
+  #out { white-space:pre-wrap; font:15px/1.7 Consolas, monospace;
+         background:#081a30; border:1px solid #23405f; border-radius:5px;
          padding:10px 12px; height:calc(100vh - 141px); overflow-y:auto; }
   .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
-  #brand { text-align:center; padding:8px 10px; background:#0e1116;
-           border-bottom:1px solid #1e2732; }
-  #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
-               vertical-align:middle; }
-  #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
-             color:#e6ebf2; vertical-align:middle; }
+  #brand { text-align:center; padding:14px 12px 16px; background:rgba(4,20,43,.92);
+           border-bottom:1px solid #2c5278; box-shadow:0 4px 18px rgba(0,0,0,.22); }
+  #brand img { width:44px; height:44px; margin-left:10px; border-radius:9px;
+               vertical-align:middle; object-fit:cover; }
+  #brand b { font-size:34px; font-weight:800; letter-spacing:.04em;
+             color:#ffffff; vertical-align:middle; }
+@media (max-width:600px) { #brand b { font-size:29px; } #brand img { width:40px; height:40px; } #state { font-size:26px; } #out { font-size:14px; } }
 </style>
 </head>
 <body>
 <div id="brand"><img src="logo.png" alt="MAGHRABY STORE" width="28" height="28"><b>MAGHRABY STORE</b></div>
 <div id="wrap">
-  <div id="state">جارٍ تحميل poops chain...</div>
+  <div id="state">جارٍ التحميل...</div>
   <div id="out"></div>
 </div>
 <script type="module">import "./chain_poops.js";</script>

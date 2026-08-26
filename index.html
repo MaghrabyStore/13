@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" manifest="cache.appcache">
+<html lang="ar" dir="rtl" manifest="cache.appcache">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,27 +8,51 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: #0b0d10 url("background.jpg") center center / cover no-repeat fixed;
-    color: #c8ced8;
-    font: 15px/1.45 "Segoe UI", system-ui, sans-serif;
+    min-height: 100%;
+    background: #06152b url("background.jpg") center center / cover no-repeat fixed;
+    color: #eef4ff;
+    font: 18px/1.7 "Tahoma", "Segoe UI", Arial, sans-serif;
 }
-  #wrap { padding:16px 18px; }
-  #state { font-size:22px; font-weight:700; margin:0 0 6px; }
-  #det { font-size:13px; color:#8b95a3; margin:0 0 4px; }
-  #det b { color:#c8ced8; font-weight:600; }
-  #cache { font-size:12px; color:#5c6672; margin:0 0 10px; min-height:14px; }
+  body::before { content:""; position:fixed; inset:0; background:rgba(3,12,28,.28); pointer-events:none; z-index:0; }
+  #wrap { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:28px 24px 40px; }
+  #state { font-size:32px; font-weight:800; margin:10px 0 10px; text-shadow:0 2px 10px rgba(0,0,0,.35); }
+  #det { font-size:18px; color:#c9d7e9; margin:0 0 8px; }
+  #det b { color:#ffffff; font-weight:600; }
+  #cache { font-size:16px; color:#aebed3; margin:0 0 18px; min-height:14px; }
   #cache.cacheok { color:#7fd0a0; }
   .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
-  #brand { text-align:center; padding:8px 10px; background:#0e1116;
-           border-bottom:1px solid #1e2732; }
-  #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
-               vertical-align:middle; }
-  #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
-             color:#e6ebf2; vertical-align:middle; }
+  #brand { position:relative; z-index:1; text-align:center; padding:16px 14px 18px;
+           background:rgba(4,20,43,.92); border-bottom:1px solid #2c5278;
+           box-shadow:0 4px 18px rgba(0,0,0,.22); }
+  #brand img { width:50px; height:50px; margin-left:12px; border-radius:10px;
+               vertical-align:middle; object-fit:cover; }
+  #brand b { font-size:36px; font-weight:800; letter-spacing:.04em;
+             color:#ffffff; vertical-align:middle; }
+  #store-info { position:relative; z-index:1; max-width:900px; margin:20px auto 0; padding:0 24px; }
+  .info-card { background:rgba(5,24,50,.88); border:1px solid rgba(94,143,190,.45);
+               border-radius:16px; padding:18px 20px; box-shadow:0 8px 28px rgba(0,0,0,.25); }
+  .store-title { font-size:24px; font-weight:800; color:#fff; margin-bottom:7px; }
+  .address { font-size:18px; color:#d8e5f5; margin-bottom:12px; }
+  .contacts { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .contact { display:inline-block; text-decoration:none; font-size:17px; font-weight:700;
+             color:#fff; background:#0d3158; border:1px solid #315f8c;
+             border-radius:10px; padding:9px 14px; }
+  .contact:hover { background:#16466f; }
+  @media (max-width:600px) {
+    #brand b { font-size:29px; } #state { font-size:26px; } #det { font-size:16px; }
+    .store-title { font-size:21px; } .address, .contact { font-size:16px; }
+  }
 </style>
 </head>
 <body>
-<div id="brand"><img src="logo.png" alt="MAGHRABY STORE" width="28" height="28"><b>MAGHRABY STORE</b></div>
+<div id="brand"><img src="logo.png" alt="MAGHRABY STORE"><b>MAGHRABY STORE</b></div>
+<div id="store-info">
+  <div class="info-card">
+    <div class="store-title">فرع سيدي بشر قبلي</div>
+    <div class="address">أرض فضالي — أمام مكتبة الحمد</div>
+
+  </div>
+</div>
 <div id="wrap">
   <div id="state">جاري فحص النظام...</div>
   <div id="det"></div>
@@ -56,18 +80,18 @@
     var bug = null, why = "";
     var forced = params.get("bug");
     if (forced === "lapse" || forced === "poops") {
-        bug = forced; why = "forced via ?bug=" + forced;
+        bug = forced; why = "تم تحديد الوضع يدويًا: " + forced;
     } else if (!key) {
-        why = "user-agent is not a PlayStation 4";
+        why = "الجهاز ليس PlayStation 4";
     } else if (fwnum <= 1202) {
-        bug = "lapse"; why = key + " <= 12.02";
+        bug = "lapse"; why = key + " — إصدار مناسب للوضع الأول";
     } else if (fwnum >= 1250) {
-        bug = "poops"; why = key + " >= 12.50";
+        bug = "poops"; why = key + " — إصدار مناسب للوضع الثاني";
     } else {
-        why = key + " -- no working bug (lapse ends at 12.02, poops needs 12.50)";
+        why = key + " — لا يوجد وضع متوافق لهذا الإصدار";
     }
-    detEl.innerHTML = "firmware <b>" + (key || "unknown") + "</b>"
-        + " &middot; bug <b>" + (bug || "none") + "</b> &middot; " + why;
+    detEl.innerHTML = "إصدار النظام <b>" + (key || "unknown") + "</b>"
+        + " &middot; الحالة <b>" + (bug || "none") + "</b> &middot; " + why;
 
     if (!bug) { setState("إصدار النظام غير مدعوم", "bad"); return; }
 
@@ -98,7 +122,7 @@
         go();
     } else if (ac.status === ac.UPDATEREADY) {
         try { ac.swapCache(); } catch (e) {}
-        setCache("update downloaded", true);
+        setCache("تم تنزيل التحديث", true);
         waitForTap("التحديث جاهز -- اضغط X أو اضغط على الشاشة لإعادة التحميل",
                    function () { location.reload(); });
     } else {
@@ -107,12 +131,12 @@
             function () { setCache("جاري الحفظ للاستخدام بدون إنترنت..."); }, false);
         ac.addEventListener("progress", function (e) {
             if (e && e.total)
-                setCache("caching " + Math.round((e.loaded / e.total) * 100) + "%");
+                setCache("جارٍ الحفظ: " + Math.round((e.loaded / e.total) * 100) + "%");
         }, false);
 
         ac.addEventListener("cached", function () {
             setCache("cتم الحفظ للاستخدام بدون إنترنت", true);
-            waitForTap("CACHED (first run) -- press X or tap to run", go);
+            waitForTap("تم الحفظ لأول مرة — اضغط X أو المس الشاشة للتشغيل", go);
         }, false);
         ac.addEventListener("updateready", function () {
             try { ac.swapCache(); } catch (e) {}
@@ -131,7 +155,7 @@
         }, false);
         ac.addEventListener("obsolete", function () {
             setCache("الذاكرة غير صالحة");
-            waitForTap("الذاكرة غير صالحة -- اضغط X أو اضغط على الشاشة للتشغيل", go);
+            waitForTap("الذاكرة غير صالحة — اضغط X أو المس الشاشة للتشغيل", go);
         }, false);
     }
 })();
