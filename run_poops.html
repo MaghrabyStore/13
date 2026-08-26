@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MAGHRABY STORE ps4 poops</title>
+<title>MAGHRABY STORE - الوضع الثاني</title>
 <style>
   html, body {
     margin: 0;
@@ -12,11 +12,12 @@
     color: #eef4ff;
     font: 18px/1.7 "Tahoma", "Segoe UI", Arial, sans-serif;
 }
-  #wrap { padding:24px 24px; }
+  body { overflow:hidden; }
+  #wrap { padding:24px 24px; height:calc(100vh - 104px); box-sizing:border-box; overflow:hidden; }
   #state { font-size:30px; font-weight:800; margin:0 0 12px; }
   #out { white-space:pre-wrap; font:15px/1.7 Consolas, monospace;
          background:#081a30; border:1px solid #23405f; border-radius:5px;
-         padding:10px 12px; height:calc(100vh - 141px); overflow-y:auto; }
+         padding:10px 12px; height:calc(100% - 60px); overflow-y:auto; overflow-x:hidden; box-sizing:border-box; }
   .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
   #brand { text-align:center; padding:14px 12px 16px; background:rgba(4,20,43,.92);
            border-bottom:1px solid #2c5278; box-shadow:0 4px 18px rgba(0,0,0,.22); }
@@ -30,7 +31,7 @@
 <body>
 <div id="brand"><img src="logo.png" alt="MAGHRABY STORE" width="28" height="28"><b>MAGHRABY STORE</b></div>
 <div id="wrap">
-  <div id="state">جارٍ التحميل...</div>
+  <div id="state">الوضع الثاني</div>
   <div id="out"></div>
 </div>
 <script type="module">import "./chain_poops.js";</script>

@@ -91,7 +91,7 @@
         why = key + " — لا يوجد وضع متوافق لهذا الإصدار";
     }
     detEl.innerHTML = "إصدار النظام <b>" + (key || "unknown") + "</b>"
-        + " &middot; الحالة <b>" + (bug || "none") + "</b> &middot; " + why;
+        + " &middot; الحالة <b>" + (bug === "lapse" ? "الوضع الأول" : (bug === "poops" ? "الوضع الثاني" : "غير محدد")) + "</b> &middot; " + why;
 
     if (!bug) { setState("إصدار النظام غير مدعوم", "bad"); return; }
 
